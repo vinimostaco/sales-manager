@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "db": "docker-compose up -d",
     "start:dev": "npx ts-node ./src/server.ts",
     "build": "tsc",
     "start": "npm run build && node ./dist/server.js"

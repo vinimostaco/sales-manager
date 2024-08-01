@@ -10,6 +10,11 @@ class GarageController {
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
+
+  static async addGarage(req: Request, res: Response) {
+    const newGarage = await GarageService.addGarage(req.body);
+    res.status(201).json(newGarage);
+  }
 }
 
 export default GarageController;
