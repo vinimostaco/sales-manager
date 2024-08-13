@@ -3,6 +3,8 @@ import UserService from "../service/user.service";
 import { UpdateUserDTO } from "../dto/update-user.dto";
 
 class UserController{
+
+    
     static async listUsers(req:Request,res: Response){
 try{
     const users = await UserService.getAllUsers()
@@ -16,8 +18,7 @@ try{
 
     static async listUser(req:Request, res: Response){
 try{
-    const {id} = req.params
-    const user = await UserService.getUser(Number(id))
+    const user = await UserService.getUser(Number(req.params.id))
     res.status(200).json(user)
 }catch(err){
     if(err instanceof Error){
@@ -46,6 +47,17 @@ try{
         {
             if(err instanceof Error){
                 res.status(500).json({message: "Error trying to update user", error: err})
+            }
+        }
+    }
+
+    static async deleteUser(req:Request, res: Response){
+        try{
+            await UserService.deleteUser(Number(req.params.id))
+            res.status(200).send("user deleted successfully")
+        }catch(err){
+            if(err instanceof Error){
+                res.status(500).json({message:"Error trying to delete user", error: err})
             }
         }
     }

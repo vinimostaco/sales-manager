@@ -29,5 +29,11 @@ class UserService {
             where:{id},data
         })
     }
+
+    static async deleteUser(id: number){
+        return prisma.user.delete({
+            where:{id}
+        })
+    }
 }
 export default UserService
